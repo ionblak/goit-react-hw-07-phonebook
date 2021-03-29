@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addContact } from '../../redux/Contacts/contacts-actions';
+import { addContact } from '../../redux/Contacts/contacts-operations';
 
 import PropTypes from 'prop-types';
 import ButtonForm from './ButtonForm';
@@ -15,7 +15,7 @@ const Contactform = ({ onSubmitForm }) => {
   const [number, setNumber] = useState('');
 
   const handleSubmit = e => {
-    const contact = { id: uuidv4(), name: name, number: number };
+    const contact = { name: name, number: number };
     e.preventDefault();
     onSubmitForm(contact);
 

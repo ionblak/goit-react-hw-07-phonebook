@@ -1,9 +1,16 @@
+import { connect } from 'react-redux';
+import { fetchContacts } from './redux/Contacts/contacts-operations';
+import { useEffect } from 'react';
+
 import Container from './Component/Container';
 import ContactList from './Component/ContactList';
 import Filter from './Component/Filter';
 import ContactForm from './Component/ContactForm';
 
-function App() {
+const App = ({ getContacts }) => {
+  useEffect(() => {
+    getContacts();
+  }, []);
   return (
     <Container>
       <h1>Phonebook</h1>
@@ -13,6 +20,10 @@ function App() {
       <ContactList />
     </Container>
   );
-}
+};
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  getContacts: () => dispatch(fetchContacts()),
+});
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,0 +1,29 @@
+{
+  "contacts": [
+    {
+      "id": "id-2",
+      "name": "Hermione Kline",
+      "number": "443-89-12"
+    },
+    {
+      "id": "id-3",
+      "name": "Eden Clements",
+      "number": "645-17-79"
+    },
+    {
+      "id": "30f92aab-f0dd-456c-92f6-4dd98c05b81d",
+      "name": "Игорь",
+      "number": "123-123-1234"
+    },
+    {
+      "name": "Igor",
+      "number": "123-123-1234",
+      "id": "EKcGkdj"
+    },
+    {
+      "name": "Rosie Simpson",
+      "number": "123-123-1234",
+      "id": "2CuCSXV"
+    }
+  ]
+}
