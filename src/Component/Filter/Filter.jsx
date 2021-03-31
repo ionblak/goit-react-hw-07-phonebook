@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import { connect } from 'react-redux';
+import { getValueFilter } from '../../redux/Contacts/contacts-selectors';
 import { filterOutContacts } from '../../redux/Contacts/contacts-actions';
 
 const useStyles = createUseStyles({
@@ -26,7 +27,9 @@ const Filter = ({ value, onHandleChange }) => {
   const classes = useStyles();
   return (
     <div>
-      <h3 className={classes.titel}>Find contacts by name</h3>
+      <h3 className={classes.titel}>
+        Find contacts by name
+      </h3>
       <input
         className={classes.input}
         type="text"
@@ -44,9 +47,13 @@ Filter.propTypes = {
   onHandleChange: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
-  value: state.contacts.filter,
+  value: getValueFilter(state),
 });
 const mapDispatchToProps = dispatch => ({
-  onHandleChange: e => dispatch(filterOutContacts(e.target.value)),
+  onHandleChange: e =>
+    dispatch(filterOutContacts(e.target.value)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Filter);

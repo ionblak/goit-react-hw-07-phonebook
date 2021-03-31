@@ -12,14 +12,16 @@ import {
   deleteContactError,
   filterOutContacts,
 } from './contacts-actions';
-import { addConditionalContact } from './utils';
 
 const INITIAL_CONTACTS = [];
 
 const itemsReducer = createReducer(INITIAL_CONTACTS, {
   [fetchContactsSuccess]: (_, { payload }) => payload,
-  [addContactSuccess]: (state, { payload }) =>
-    addConditionalContact(state, payload),
+  [addContactSuccess]: (state, { payload }) => [
+    ...state,
+    payload,
+  ],
+
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
@@ -35,11 +37,11 @@ const loading = createReducer(false, {
 
   [addContactSuccess]: () => false,
   [deleteContactSuccess]: () => false,
-  [fetchContactsSuccess]: () => true,
+  [fetchContactsSuccess]: () => false,
 
   [deleteContactError]: () => false,
   [addContactError]: () => false,
-  [fetchContactsError]: () => true,
+  [fetchContactsError]: () => false,
 });
 
 export default combineReducers({

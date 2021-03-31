@@ -24,7 +24,15 @@ const fetchContacts = () => dispatch => {
     .catch(error => dispatch(fetchContactsError(error)));
 };
 
-const addContact = contact => dispatch => {
+const addContact = contact => (dispatch, getState) => {
+  const { contacts } = getState();
+  const isOridginal = contacts.items.some(
+    item => item.name === contact.name,
+  );
+  if (isOridginal) {
+    alert(`${contact.name} is already in contacts`);
+    return;
+  }
   dispatch(addContactRequest());
 
   axios
